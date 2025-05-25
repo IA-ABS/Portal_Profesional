@@ -1,0 +1,324 @@
+:root {
+  --dark-blue: #0A192F;
+  --mint-green: #98FB98;
+  --soft-orange: #FFA07A; /* LightSalmon es un buen naranja suavizado */
+  --text-blue: #87CEFA; /* LightSkyBlue - Azul claro para texto */
+  --text-apple-green: #90EE90; /* LightGreen - Verde manzana para texto */
+  --text-orange: #FFB347; /* Un naranja más legible para texto */
+
+  --border-radius-smooth: 8px;
+}
+
+body {
+  background-color: var(--dark-blue);
+  color: var(--text-blue); /* Color de texto por defecto */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--dark-blue);
+}
+
+/* Estilos del Header (app-header-style) */
+.app-header-style {
+  background-color: #071323; /* Un poco más oscuro que el fondo principal */
+  padding: 20px;
+  border-bottom: 3px solid var(--mint-green);
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.app-header-style h1 {
+  color: var(--text-orange);
+  margin: 0 0 10px 0;
+  font-size: 2.5em;
+}
+
+.app-header-style p {
+  color: var(--text-apple-green);
+  margin: 5px 0;
+  font-size: 1.1em;
+}
+
+.app-header-style nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.app-header-style nav li {
+  background-color: var(--text-blue);
+  color: var(--dark-blue);
+  padding: 10px 20px;
+  border-radius: var(--border-radius-smooth);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: bold;
+  border: 2px solid var(--soft-orange);
+}
+
+.app-header-style nav li:hover {
+  background-color: var(--mint-green);
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.app-header-style .ask-gemini-button {
+  background-color: var(--soft-orange);
+  color: var(--dark-blue);
+  padding: 12px 25px;
+  border-radius: var(--border-radius-smooth);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: bold;
+  border: 2px solid var(--mint-green);
+  font-size: 1.1em;
+  margin-top: 15px;
+}
+
+.app-header-style .ask-gemini-button:hover {
+  background-color: #FF8C66; /* Naranja un poco más intenso */
+  transform: translateY(-2px);
+}
+
+
+.app-main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto; /* Para scroll si el contenido es largo */
+}
+
+/* Estilos del Chatbot (chatbot-component-style) */
+.chatbot-component-style {
+  background-color: #0E2038; /* Un poco más claro que el fondo */
+  border: 2px solid var(--mint-green);
+  border-radius: var(--border-radius-smooth);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 700px;
+  box-shadow: 0 0 15px rgba(152, 251, 152, 0.2); /* Sombra verde menta */
+  display: flex;
+  flex-direction: column;
+  height: 70vh; /* Altura considerable para el chat */
+  max-height: 600px;
+}
+.chatbot-component-style .chatbot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--mint-green);
+}
+.chatbot-component-style .chatbot-header h3 {
+    color: var(--text-orange);
+    margin: 0;
+}
+.chatbot-component-style .chatbot-header .close-button {
+    background: var(--soft-orange);
+    color: var(--dark-blue);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.chatbot-component-style .chatbot-header .close-button:hover {
+    background: #FF8C66;
+}
+
+.chatbot-component-style .messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 10px; /* Espacio para la scrollbar */
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chatbot-component-style .msg {
+  padding: 10px 15px;
+  border-radius: var(--border-radius-smooth);
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.chatbot-component-style .msg.user {
+  background-color: var(--text-blue);
+  color: var(--dark-blue);
+  align-self: flex-end;
+  border: 1px solid var(--soft-orange);
+}
+
+.chatbot-component-style .msg.bot {
+  background-color: #1C3A5E; /* Azul más profundo para el bot */
+  color: var(--text-apple-green);
+  align-self: flex-start;
+  border: 1px solid var(--mint-green);
+}
+.chatbot-component-style .msg.bot.error {
+  background-color: #5e1c1c; /* Rojo oscuro para errores */
+  color: var(--text-orange);
+  border: 1px solid var(--soft-orange);
+}
+
+
+.chatbot-component-style .input-box {
+  display: flex;
+  border-top: 1px solid var(--mint-green);
+  padding-top: 15px;
+}
+
+.chatbot-component-style .input-box input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 2px solid var(--soft-orange);
+  border-radius: var(--border-radius-smooth) 0 0 var(--border-radius-smooth);
+  background-color: #152A40;
+  color: var(--text-apple-green);
+  outline: none;
+}
+.chatbot-component-style .input-box input::placeholder {
+  color: var(--text-blue);
+  opacity: 0.7;
+}
+
+.chatbot-component-style .input-box button {
+  padding: 10px 20px;
+  background-color: var(--soft-orange);
+  color: var(--dark-blue);
+  border: none;
+  cursor: pointer;
+  border-radius: 0 var(--border-radius-smooth) var(--border-radius-smooth) 0;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.chatbot-component-style .input-box button:hover {
+  background-color: #FF8C66; /* Naranja un poco más intenso */
+}
+.chatbot-component-style .input-box button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Estilos para DataDisplay */
+.data-display-container {
+  background-color: #0E2038;
+  border: 2px solid var(--soft-orange);
+  border-radius: var(--border-radius-smooth);
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 900px;
+  box-shadow: 0 0 15px rgba(255, 160, 122, 0.2); /* Sombra naranja suavizada */
+}
+
+.data-display-container h2 {
+  color: var(--text-orange);
+  border-bottom: 2px solid var(--mint-green);
+  padding-bottom: 10px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.8em;
+}
+.data-display-container h2 .topic-icon {
+  font-size: 1.5em; /* Ajustar tamaño del icono */
+}
+
+.data-display-container .topic-description {
+  color: var(--text-apple-green);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.data-display-container .section {
+  margin-bottom: 25px;
+}
+
+.data-display-container .section h3 {
+  color: var(--text-apple-green);
+  margin-bottom: 10px;
+  font-size: 1.4em;
+}
+
+.data-display-container .section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.data-display-container .section li {
+  background-color: #152A40;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: var(--border-radius-smooth);
+  border-left: 5px solid var(--mint-green);
+}
+
+.data-display-container .section li strong {
+  color: var(--text-blue);
+}
+
+.data-display-container .section a {
+  color: var(--text-orange);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.data-display-container .section a:hover {
+  text-decoration: underline;
+  color: #FFDAB9; /* PeachPuff - Naranja más claro al pasar el mouse */
+}
+
+.data-display-container .contact-info p,
+.data-display-container .details p {
+  color: var(--text-blue);
+  line-height: 1.6;
+}
+
+.data-display-container .ask-gemini-context-button {
+  background-color: var(--mint-green);
+  color: var(--dark-blue);
+  padding: 10px 20px;
+  border-radius: var(--border-radius-smooth);
+  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid var(--soft-orange);
+  display: inline-block;
+  margin-top: 15px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.data-display-container .ask-gemini-context-button:hover {
+  background-color: #87EAA8;
+  transform: translateY(-2px);
+}
+
+.welcome-message {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-apple-green);
+}
+.welcome-message h2 {
+  color: var(--text-orange);
+  font-size: 2em;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #071323;
+  border-top: 2px solid var(--soft-orange);
+  color: var(--text-blue);
+  font-size: 0.9em;
+}
